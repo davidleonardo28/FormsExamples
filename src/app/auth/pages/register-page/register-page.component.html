@@ -1,0 +1,178 @@
+<div class="container mt-5">
+  <h2
+    class="text-center display-4 fw-bold mb-4 pb-2 border-bottom border-3 border-primary"
+  >
+    Validaciones: <small class="text-muted">Reactivas</small>
+  </h2>
+
+  <div class="row justify-content-center">
+    <div class="col-md-12 col-lg-11 col-xl-10">
+      <div class="card shadow-lg p-4 w-100">
+        <div class="card-body">
+          <form [formGroup]="myForm" (ngSubmit)="onSubmit()" autocomplete="off">
+            <!-- Nombre -->
+            <div class="row mb-4">
+              <label class="col-sm-3 col-form-label">Nombre</label>
+              <div class="col-sm-9">
+                <input
+                  type="text"
+                  class="form-control form-control-lg"
+                  formControlName="name"
+                  placeholder="Nombre del usuario"
+                />
+                <small
+                  *ngIf="isValidField('name')"
+                  class="form-text text-danger"
+                >
+                  <i class="bi bi-exclamation-circle-fill"></i> Debe de ser en
+                  formato de nombre y apellido
+                </small>
+              </div>
+            </div>
+
+            <!-- Email -->
+            <div class="row mb-4">
+              <label class="col-sm-3 col-form-label">Email</label>
+              <div class="col-sm-9">
+                <input
+                  type="email"
+                  class="form-control form-control-lg"
+                  formControlName="email"
+                  placeholder="Email del usuario"
+                />
+                <small
+                  *ngIf="isValidField('email')"
+                  class="form-text text-danger"
+                >
+                  <i class="bi bi-exclamation-circle-fill"></i> mensaje de error
+                  del email
+                </small>
+              </div>
+            </div>
+
+            <!-- Username -->
+            <div class="row mb-4">
+              <label class="col-sm-3 col-form-label">Username</label>
+              <div class="col-sm-9">
+                <input
+                  type="text"
+                  class="form-control form-control-lg"
+                  formControlName="username"
+                  placeholder="Nombre código del usuario"
+                />
+                <small
+                  *ngIf="isValidField('username')"
+                  class="form-text text-danger"
+                >
+                  <i class="bi bi-exclamation-circle-fill"></i> El username no
+                  puede ser Strider
+                </small>
+              </div>
+            </div>
+
+            <!-- Password -->
+            <div class="row mb-4">
+              <label class="col-sm-3 col-form-label">Password</label>
+              <div class="col-sm-9">
+                <input
+                  type="password"
+                  class="form-control form-control-lg"
+                  formControlName="password"
+                  placeholder="Password de su cuenta"
+                />
+                <small
+                  *ngIf="isValidField('password')"
+                  class="form-text text-danger"
+                >
+                  <i class="bi bi-exclamation-circle-fill"></i> La contraseña
+                  debe de ser mayor de 6 caracteres
+                </small>
+              </div>
+            </div>
+
+            <!-- Password Confirm -->
+            <div class="row mb-4">
+              <label class="col-sm-3 col-form-label">Confirmar</label>
+              <div class="col-sm-9">
+                <input
+                  type="password"
+                  class="form-control form-control-lg"
+                  formControlName="password2"
+                  placeholder="Confirmar la contraseña"
+                />
+                <small
+                  *ngIf="isValidField('password2')"
+                  class="form-text text-danger"
+                >
+                  <i class="bi bi-exclamation-circle-fill"></i> Las contraseñas
+                  deben de ser iguales
+                </small>
+              </div>
+            </div>
+
+            <div class="text-end">
+              <button class="btn btn-primary btn-lg" type="submit">
+                <i class="bi bi-person-plus-fill"></i> Crear
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mt-5 justify-content-center">
+    <div class="col-md-12 col-lg-11 col-xl-10">
+      <div class="card shadow-lg p-4 w-100">
+        <div class="card-body">
+          <h5 class="card-title">Estado del Formulario</h5>
+          <div class="mb-3">
+            <strong>Form Valid:</strong>
+            <pre>{{ myForm.valid | json }}</pre>
+          </div>
+
+          <div class="mb-3">
+            <strong>Form Status:</strong>
+            <pre>{{ myForm.status | json }}</pre>
+          </div>
+
+          <div class="mb-3">
+            <strong>Form Pending:</strong>
+            <pre>{{ myForm.pending | json }}</pre>
+          </div>
+
+          <div class="mb-3">
+            <strong>Form Errors:</strong>
+            <pre>{{ myForm.errors | json }}</pre>
+          </div>
+
+          <h5>Detalles del Formulario</h5>
+          <div class="mb-3">
+            <strong>Nombre:</strong>
+            <pre>{{ myForm.controls["name"].errors | json }}</pre>
+          </div>
+
+          <div class="mb-3">
+            <strong>Email:</strong>
+            <pre>{{ myForm.controls["email"].errors | json }}</pre>
+          </div>
+
+          <div class="mb-3">
+            <strong>Username:</strong>
+            <pre>{{ myForm.controls["username"].errors | json }}</pre>
+          </div>
+
+          <div class="mb-3">
+            <strong>Password:</strong>
+            <pre>{{ myForm.value.password | json }}</pre>
+          </div>
+
+          <div class="mb-3">
+            <strong>Confirmar:</strong>
+            <pre>{{ myForm.value.password2 | json }}</pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

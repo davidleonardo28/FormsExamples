@@ -1,0 +1,139 @@
+<div class="container mt-5">
+  <h2
+    class="text-center display-4 fw-bold mb-4 pb-2 border-bottom border-3 border-primary"
+  >
+    Reactivos: <small class="text-muted">Dinámicos</small>
+  </h2>
+
+  <div class="row justify-content-center">
+    <div class="col-md-12 col-lg-11 col-xl-10">
+      <div class="card shadow-lg p-4 w-100">
+        <div class="card-body">
+          <form
+            [formGroup]="myFormProduct"
+            (ngSubmit)="onSubmit()"
+            autocomplete="off"
+          >
+            <!-- Nombre -->
+            <div class="mb-4 row">
+              <label class="col-sm-3 col-form-label">Nombre</label>
+              <div class="col-sm-9">
+                <input
+                  type="text"
+                  formControlName="name"
+                  class="form-control form-control-lg"
+                  placeholder="Nombre de la persona"
+                />
+                <small
+                  *ngIf="isValidField('name')"
+                  class="form-text text-danger"
+                >
+                  <i class="bi bi-exclamation-circle-fill"></i
+                  >{{ getFieldError("name") }}
+                </small>
+              </div>
+            </div>
+
+            <!-- Agregar Favorito -->
+            <div class="mb-4 row">
+              <label class="col-sm-3 col-form-label">Agregar</label>
+              <div class="col-sm-9">
+                <div class="input-group">
+                  <input
+                    class="form-control"
+                    [formControl]="newFavorite"
+                    placeholder="Agregar favorito"
+                  />
+
+                  <button
+                    (click)="onAddToFavorites()"
+                    class="btn btn-outline-primary"
+                    type="button"
+                  >
+                    Agregar favorito
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Lista de Juegos Favoritos -->
+            <div class="mb-4 row">
+              <label class="col-sm-3 col-form-label">Favoritos</label>
+              <div class="col-sm-9" formArrayName="favoriteGames">
+                <div
+                  *ngFor="let favorite of favoriteGames.controls; let i = index"
+                  class="favorite-item mb-3"
+                >
+                  <div class="input-group mb-1">
+                    <input
+                      [formControlName]="i"
+                      type="text"
+                      class="form-control form-control-lg"
+                      placeholder="Juego favorito"
+                    />
+                    <button
+                      (click)="onDeleteFavorite(i)"
+                      class="btn btn-outline-danger"
+                      type="button"
+                    >
+                      <i class="bi bi-trash"></i> Eliminar
+                    </button>
+                    <span
+                      *ngIf="isValidFieldInArray(favoriteGames, i)"
+                      class="form-text text-danger"
+                    >
+                      <i class="bi bi-exclamation-circle-fill"></i>Este campo es
+                      requerido
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Botón Guardar -->
+            <div class="text-end">
+              <button
+                type="submit"
+                (click)="onSubmit()"
+                class="btn btn-primary btn-lg"
+              >
+                <i class="bi bi-save"></i> Guardar
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Estado del formulario -->
+  <div class="row mt-5 justify-content-center">
+    <div class="col-md-12 col-lg-11 col-xl-10">
+      <div class="card shadow-lg p-4 w-100">
+        <div class="card-body">
+          <h5 class="card-title">Estado del Formulario</h5>
+
+          <div class="mb-3">
+            <strong>Valid</strong>
+            <pre>{{ myFormProduct.valid | json }}</pre>
+          </div>
+
+          <div class="mb-3">
+            <strong>Value</strong>
+            <pre>{{ myFormProduct.value | json }}</pre>
+          </div>
+
+          <div class="mb-3">
+            <strong>Agregar Juego</strong>
+            <pre>{{ newFavorite.valid | json }}</pre>
+          </div>
+
+          <div class="mb-3">
+            <strong>Formulario Completo</strong>
+            <pre>{{ newFavorite.value | json }}</pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,34 @@
+<div class="container-fluid">
+  <h2
+    class="text-center display-6 fw-bold mb-3 pb-2 border-bottom border-3 border-primary"
+  >
+    Páginas
+  </h2>
+  <hr />
+
+  <!-- Sección Reactive -->
+  <h3 class="mt-4 text-primary">Reactive</h3>
+  <ul class="list-group mb-4">
+    <li
+      *ngFor="let item of reactiveMenu"
+      class="list-group-item list-group-item-action"
+      [routerLink]="[item.route]"
+      routerLinkActive="active"
+    >
+      {{ item.title }}
+    </li>
+  </ul>
+
+  <!-- Sección Validaciones -->
+  <h3 class="mt-4 text-primary">Validaciones</h3>
+  <ul class="list-group">
+    <li
+      *ngFor="let item of authMenu"
+      class="list-group-item list-group-item-action"
+      [routerLink]="[item.route]"
+      routerLinkActive="active"
+    >
+      {{ item.title }}
+    </li>
+  </ul>
+</div>
